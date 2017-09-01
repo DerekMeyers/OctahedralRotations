@@ -8,7 +8,7 @@ from lmfit import Model, conf_interval, ci_report
 """ 
 This file contains (i) the cells for each possible orthorhombic domain which calculates the positions of each atom based upon the   \
 rotations and displacements, (ii) structure factor calculator based upon these positions, (iii) definitions for setting constraints \
-on the rotation angles and displacement magnitudes.
+on the rotation angles and displacement magnitudes. Each cell is labeled as in Brahlek et al J. Appl. Phys. 121, 045303 (2017).
 
 Using pseudocubic notation for H,K,L and a,b,c everywhere.
 """
@@ -19,6 +19,7 @@ import periodictable.cromermann as ptc
 # download and python setup.py install from folder
 
 def get_form_factor(element_name, wavelength):
+    """ Extract form factor for each element."""
     f_obj = getattr(pt, element_name)
     tup_re_im = f_obj.xray.scattering_factors(wavelength=wavelength)
     return np.array([tup_re_im[0] + 1j*tup_re_im[1]])
