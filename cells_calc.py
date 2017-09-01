@@ -5,7 +5,13 @@ from collections import OrderedDict
 from functools import reduce
 from lmfit import Model, conf_interval, ci_report
 
-""" Using pseudocubic notation for H,K,L and a,b,c everywhere"""
+""" 
+This file contains (i) the cells for each possible orthorhombic domain which calculates the positions of each atom based upon the   \
+rotations and displacements, (ii) structure factor calculator based upon these positions, (iii) definitions for setting constraints \
+on the rotation angles and displacement magnitudes.
+
+Using pseudocubic notation for H,K,L and a,b,c everywhere.
+"""
 
 import periodictable as pt
 import periodictable.cromermann as ptc
@@ -527,6 +533,7 @@ def set_rotation_domains(params,Rotations):
     return params
 
 def orthorhombic_only(params,Rotations):
+    """Set the direction of the in-phase rotation axis. """
     if Rotations == 'Out-of-plane':
         params['D_2Rppp'].vary =  False
         params['D_2Rppp'].value =  0
