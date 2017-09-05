@@ -588,3 +588,22 @@ def set_standard_constraintsSL(params):
     params['gamma2'].set(min = -30, max = 30)
     return params
 
+
+def conv_HKL_orTOpc(H,K,L,axis):
+    # Take orthorhombic HKL and convert to pc using the unique axis, which must be determined from scattering.
+    
+    # Set long axis to L direction, simplify conversion.
+    if axis == 'H':
+        H, L = L, H
+    elif axis == 'K':
+        K, L = L, K
+    elif axis == 'L':
+        pass
+    else:
+        print('Axis incorrect. Assuming L was meant.')
+    
+    h = 0.5*H+0.5*K
+    k = 0.5*H-0.5*K
+    l = 0.5*L
+
+    return h, k, l
